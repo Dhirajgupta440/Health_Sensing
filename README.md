@@ -1,70 +1,52 @@
-# DeepMedico™ – Health Sensing: Sleep Apnea Detection  
-**Sustainability Lab, IIT Gandhinagar**  
-**Scenario 2 – 25 Marks**  
-**Student:** Dhiraj Kumar 
- 
-**Submission Date:** November 28, 2025  
+# 🩺 Health Sensing: Breathing Irregularity Detection
+
+This repository contains the full implementation of **Scenario-2: Health Sensing** for the IIT Gandhinagar — Sustainability Lab Internship Task 2025.
+
+Goal → Detect abnormal breathing events (Apnea/Hypopnea) from overnight physiological recordings (8 hours × 5 participants).
 
 ---
 
-## Project Overview
+## 📊 Dataset Details
 
-This repository implements a **complete end-to-end pipeline** for detecting **breathing irregularities (Hypopnea, Obstructive Apnea)** during sleep using multi-modal physiological signals collected from **5 participants** (8-hour PSG recordings).
+| Signal | Sampling Rate |
+|--------|--------------|
+| Nasal Airflow | 32 Hz |
+| Thoracic Movement | 32 Hz |
+| SpO₂ | 4 Hz |
 
+Annotations Provided:
+- Flow Events → Hypopnea, Obstructive Apnea
+- Sleep Profile → Sleep Stages (Wake, REM, N1, N2, N3)
 
 ---
 
-## Project Structure
-HEALTH SENSING/
-├── Data/
-│   └── AP01/
-│       ├── Flow - 30-05-2024.txt
-│       ├── Thorac - 30-05-2024.txt
-│       ├── SPO2 - 30-05-2024.txt
-│       └── Flow Events - 30-05-2024.txt
-├── Visualizations/
-│   └── AP01_visualization.pdf
-├── Dataset/
-│   └── breathing_dataset.pkl
-├── results/
-│   ├── cm_cnn_80_20.png
-│   ├── cm_conv_lstm_80_20.png
-│   ├── summary.json
-│   └── full_results.json
-├── models/
-│   ├── cnn_model.py
-│   └── conv_lstm_model.py
-├── scripts/
-│   ├── vis.py
-│   ├── create_dataset.py
-│   └── train_model.py
-├── README.md
-├── requirements.txt
-└── report.pdf
+## 🔗 Important Links
+
+| Description | Link |
+|------------|------|
+| 📌 Raw Dataset | https://drive.google.com/drive/folders/1AU1rhcpZiUilQy7fYpWQXE0s3Mad5nsY |
+| 📌 Results & Outputs | https://drive.google.com/drive/folders/14ETYATkbmjHWyHRMzCrS4M0dpQI2FHAr |
+
+Due to size limits, raw data is stored externally.
+
+---
 
 
 ---
 
-## Deliverables & Marks Breakdown
+## 🧪 Tasks & Outcomes
 
-| Task | Script | Output | Marks |
-|------|--------|--------|-------|
-| **1. Visualization** | `vis.py` | `Visualizations/AP01_visualization.pdf` | **3/3** |
-| **2. Data Cleaning** | `create_dataset.py` | Bandpass filter (0.17–0.4 Hz) | **4/4** |
-| **3. Dataset Creation** | `create_dataset.py` | `breathing_dataset.pkl` | **8/8** |
-| **4. Modeling & Evaluation** | `train_model.py` | `results/` | **10/10** |
-| **Total** | | | **25/25** |
+✔ Visualization of signals with event markers  
+✔ Noise reduced using band-pass filtering (0.17–0.4 Hz)  
+✔ Dataset created using 30s windows (50% overlap)  
+✔ Three Classes: Normal / Hypopnea / OSA  
+✔ LOPO-Cross Validation ✓  
+✔ Per-class performance results ✓  
 
 ---
 
-## 1. Visualization (`vis.py`) – **3 Marks**
+## 🚀 Usage
 
-**Features:**
-- Plots **Nasal Airflow**, **Thoracic Movement**, **SpO₂** over 8 hours
-- Overlays **annotated apnea/hypopnea events** as shaded regions
-- Handles **different sampling rates** (32 Hz vs 4 Hz) using **timestamps**
-- Exports **PDF** to `Visualizations/`
-
-**Run:**
+### 🔹Visualization
 ```bash
-python scripts/vis.py -name Data/AP01
+python scripts/vis.py -name "AP01"
